@@ -3,7 +3,7 @@
 
 ## Project Description
 
-#### My game is called Plpak. It is a Czech card game similar to Spades or Hearts. My web version will be a single player game with a running score and a winner determined at the end (the human player or one of the 3 computer players).
+#### My game is called Plpak. It is a Czech card game similar to Spades or Hearts. My web version will be a single player game with a running score and a winner determined at the end (the human player or one of the 3 computer players or a tie).
 
 ## Game Description
 
@@ -27,8 +27,9 @@
 
 ### Rules of Play:
 
+#### MVP
 * Each of the 5 hands that each player deals has its own rules and objective:
-    1. Don't take any `Tricks`- the objective is to avoid taking any tricks
+1. Don't take any `Tricks`- the objective is to avoid taking any tricks
         * Each `trick` is worth *1 point*
         * The player to the left of the dealer leads off play
         * Each subsequent player must play a card of the **lead suit** if they have a card of that suit in their hand
@@ -37,7 +38,9 @@
         * Whichever player took the `trick` leads of the next **round of play**
         * The round is scored by assigning *1 point* per `trick` taken by each player
         * After all 8 rounds have been played the dealer deals the next hand
-    2. Don't take any `Hearts` - the objective is to avoid taking any cards in the heart suit
+
+#### Stretch Goals
+2. Don't take any `Hearts` - the objective is to avoid taking any cards in the heart suit
         * Each `heart` is worth *1 point*
         * The player to the left of the dealer leads off play
         * Each subsequent player must play a card of the **lead suit** if they have a card of that suit in their hand
@@ -46,7 +49,7 @@
         * Whichever player took the `trick` leads of the next **round of play**
         * The round is scored by assigning *1 point* per `heart` taken by each player (taking tricks is irrelevant for scoring as long as they contain no `hearts`)
         * After all 8 rounds have been played the dealer deals the next hand
-    3. Don't take any `Queens` - the objective is to avoid taking any queen cards
+3. Don't take any `Queens` - the objective is to avoid taking any queen cards
         * Each `queen` is worth *2 points*
         * The player to the left of the dealer leads off play
         * Each subsequent player must play a card of the **lead suit** if they have a card of that suit in their hand
@@ -55,7 +58,7 @@
         * Whichever player took the `trick` leads of the next **round of play**
         * The round is scored by assigning *2 points* per `queen` taken by each player (taking tricks is irrelevant for scoring as long as they contain no `queens`)
         * After all 8 rounds have been played the dealer deals the next hand
-    4. Don't take the `King of Hearts` - the objective is to avoid taking the `king of hearts`
+4. Don't take the `King of Hearts` - the objective is to avoid taking the `king of hearts`
         * The `king of hearts` is worth *8 points*
         * The player to the left of the dealer leads off play
         * The player leading off my not lead with a heart
@@ -66,7 +69,7 @@
         * The hand ends after a **round of play** where the `king of hearts` is played is complete
         * The round is scored by assigning *8 points* to the player who took the `king of hearts` (taking tricks is irrelevant for scoring as long as they don't contain the `king of hearts`)
         * After the **round of play** where the `king of hearts` is played is complete the dealer deals the next hand
-    5. `Solitaire` - the objective is to get rid of all the cards in your hand as quickly as possible
+5. `Solitaire` - the objective is to get rid of all the cards in your hand as quickly as possible
         * The player with the jack of spades leads off play
         * Play rotates to the left
         * The next player can play another one of the jacks (laid out next to the jack of spades), a 10 of spades or a queen of spades (build down/up from the jack of spades)
@@ -77,19 +80,19 @@
             * Subtracting 3 points from the player who got rid of all their cards second
             * Subtracting 1 points from the player who got rid of all their cards third
 
-    * The game ends after all 20 hands have been played.  The winner is the the player with the fewest points
+* The game ends after all 20 hands have been played.  The winner is the the player with the fewest points
 
 ## User Stories
 
 ### MVP Goals
-- As a player, I want to be able to play a game consisting of hands 1 - 4 of Plpak (`tricks`, `hearts`, `queens`, `king of hearts`)
+- As a player, I want to be able to play a game consisting of the 1st hand of Plpak (`tricks`), played for 4 hands
 - As a player, I want to a playing area to be displayed in the center of the screen where the cards that are played in each round of play are rendered
 - As a player, I want the first dealer to be selected randomly from the 4 players.
 - As a player, I want each hand of the game to start with each player having 8 randomly dealt cards between 7 - A.  The human players cards are rendered face up at the bottom of the screen and the 3 computer players hands are rendered face down, 1 hand on each of the other 3 sides of the screen.
-- As a player, I want game play to follow the correct sequence for hands 1 - 4:
-    - the first dealer deals 4 hands and then each subsequent player to the left becomes the dealer and deals 4 hands.
-    - Once all 16 hands have been dealt the game ends.
-- As a player, I want each player to play in the correct order for hands 1 - 4:
+- As a player, I want game play to follow the correct sequence for each hand:
+    - the first dealer deals 1 hand and then each subsequent player to the left becomes the dealer and deals 1 hand.
+    - Once all 4 hands have been dealt the game ends.
+- As a player, I want each player to play in the correct order:
     - the player to the left of the dealer starts each hand
     - after the first round of play in each hand the player who took the previous `trick` leads off the next round of play
     - Play continues until all cards have been played
@@ -99,60 +102,32 @@
         - if the player has cards of the **lead suit**, they play their higest card of that suit that is lower than the cards that have already been played
         - if the player doesn't have any cards of the **lead suit**:
             - if they have any A or K they play one randomly, else
-            - if they have a single card 9 or greater of one suit they play it,
-            - else they play their highest card 
+            - if they have a single card 9 or greater of one suit they play it, else
+            - they play their highest card 
 - As a player, I want to know when it is my turn to play, and I want to click one of my cards to select it to be played.
-- As a player, I want the game to be scored correctly and a running score to be kept and rendered on screen throughout the game
-    - Hand 1: 1 point per `trick`
-    - Hand 2: 1 point per `heart`
-    - Hand 3: 2 points per `queen`
-    - Hand 4: 8 points for the `king of hearts`
+- As a player, I want the game to be scored correctly and a running score to be kept and rendered on screen throughout the game:
+    - 1 point per `trick` is aggregated to the player who takes it
 - As a player, I want the player with the lowest score to be declared the winner at the end of the game, or a tie to be declared in the event of a tie
 - As a player, I want a button to start a new game
 
 ### Stretch Goals
-- As a player, I want to play hand 5 of Plpak (`solitaire`) such that the game now consists of each player dealing 5 hads for a total of 20 hands. Hand 5 is dealt and played after hand 4 in each players deal.
-- As a player, I want the hand to be played such that the players build out each suit in order starting from the jack and builiding upward and downward, ending up as such:
-
-| Spades | Hearts | Clubs | Diamonds |
-|:------:|:------:|:-----:|:--------:|
-|    A   |    A   |   A   |     A    |
-|    K   |    K   |   K   |     K    |
-|    Q   |    Q   |   Q   |     Q    |
-|    J   |    J   |   J   |     J    |
-|   10   |   10   |   10  |    10    |
-|    9   |    9   |   9   |     9    |
-|    8   |    8   |   8   |     8    |
-|    7   |    7   |   7   |     7    |
-- This is how the board should look after all cards have been played.
-
-- As a player, I want each player to play in the correct order for hand 5:
-    - The player with the jack of spades starts
-    - Each player to the left plays 1 card only if they have a jack or a card that allows them to build sequentially on the cards that have already been played.  For example:
-
-| Spades | Hearts | Clubs | Diamonds |
-|:------:|:------:|:-----:|:--------:|
-|    -   |    -    |   -   |    -    |
-|    -   |    -    |   -   |    -    |
-|    -   |    -    |   Q   |    -    |
-|    J   |     -   |   J   |    -    |
-|   10   |      -  |    -  |    -    |
-|    9   |     -   |   -   |    -    |
-|    -   |     -   |   -   |    -    |
-|    -   |     -   |   -   |    -    |
-- In this case the next player could play a queen or 8 of spadess, jack of hearts, 10 or king of clubs or jack of diamonds.
-    - Play continues until all cards have been played
-- As a player, I want the game to be scored correctly including hand 5 and a running score to be kept and rendered throughout the game
-    - Hand 5: -5 points for the player who runs out of cards first
-              -3 points for the player who runs out of cards second
-              -1 point for the player who runs out of cards third
+- As a player I want to be able to play hand number 2 (`hearts`) the Plpak card game to my web app.
+- As a player I want the following differences from MVP:
+    - Each player will deal 2 hands, 1 of `tricks` and 1 of `hearts` for a total of 8 hands in the game
+    - As a player, for each `hearts` hand I want I want my 3 computer opponents to use basic logic for their strategy:
+        - When leading off a round of play, if the player has the 7, 8, or 9 of hearts, they play the lowest one
+        - When not leading off a round of play:
+            - if the player has cards of the **lead suit**, they play their higest card of that suit that is lower than the cards that have already been played
+         - if the player doesn't have any cards of the **lead suit**:
+            - they play the highest heart that they have, else
+            - they play the highest card they have
+- As a player, I want the game to be scored correctly and a running score to be kept and rendered on screen throughout the game:
+    - 1 point per `trick` is aggregated to the player who takes it
+    - 1 point per `heart` is aggregated to the player who takes it
 
 ## Wire Frames
-### Game play look for hands 1 to 4
+### Game play look
 ![image](https://github.com/Matt-Gallery/my-game-plpak/blob/main/static%20assets/Plpak%20Game%20Board.png?raw=true)
-
-### Game play look for hand 5
-![image](https://github.com/Matt-Gallery/my-game-plpak/blob/main/static%20assets/Plpak%20Solitarie%20Round%20Game%20Board.png?raw=true)
 
 ## Pseudocode
 ```js
@@ -174,6 +149,10 @@
 // Handle player clicking a card to play
 // Logic to determine what card the 3 computer players play
 // Display messages to prompt player to play their turn and the result message - either who won or who tied
+
+/*----------------------------- Event Listeners -----------------------------*/
+// Player clicks the start/restart button
+// Player clicks a card to be played
 
 ```
 

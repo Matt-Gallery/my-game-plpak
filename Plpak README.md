@@ -175,6 +175,8 @@
 // Logic to determine what card the 3 computer players play
 // Display messages to prompt player to play their turn and the result message - either who won or who tied
 
+/*----------------------------- Event Listeners -----------------------------*/
+
 ```
 
 ## Timeline
