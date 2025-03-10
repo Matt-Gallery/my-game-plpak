@@ -111,8 +111,9 @@
 - As a player, I want a button to start a new game
 
 ### Stretch Goals
-- As a player I want to be able to play hand number 2 (`hearts`) the Plpak card game to my web app.
-- As a player I want the following differences from MVP:
+- As a player, I want my computer opponents to use advanced strategies that mimick human players as much as possible
+- As a player, I want to be able to play hand number 2 (`hearts`) the Plpak card game to my web app.
+- As a player, I want the following differences from MVP:
     - Each player will deal 2 hands, 1 of `tricks` and 1 of `hearts` for a total of 8 hands in the game
     - As a player, for each `hearts` hand I want I want my 3 computer opponents to use basic logic for their strategy:
         - When leading off a round of play, if the player has the 7, 8, or 9 of hearts, they play the lowest one
