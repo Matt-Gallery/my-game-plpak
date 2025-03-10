@@ -82,28 +82,37 @@
 ## User Stories
 
 ### MVP Goals
-    - As a player, I want to be able to play a game consisting of hands 1 - 4 of Plpak (`tricks`, `hearts`, `queens`, `king of hearts`)
-    - As a player, I want to a playing area to be displayed in the center of the screen where the cards that are played in each round of play are rendered
-    - As a player, I want the first dealer to be selected randomly from the 4 players.
-    - As a player, I want each hand of the game to start with each player having 8 randomly dealt cards between 7 - A.  The human players cards are rendered face up at the bottom of the screen and the 3 computer players hands are rendered face down, 1 hand on each of the other 3 sides of the screen.
-    - As a player, I want game play to follow the correct sequence for hands 1 - 4:
-        - the first dealer deals 4 hands and then each subsequent player to the left becomes the dealer and deals 4 hands.
-        - Once all 16 hands have been dealt the game ends.
-    - As a player, I want each player to play in the correct order for hands 1 - 4:
-            - the player to the left of the dealer starts each hand
-            - after the first round of play in each hand the player who took the previous `trick` leads off the next round of play
-            - Play continues until all cards have been played
-    - As a player, I want to know when it is my turn to play, and I want to click one of my cards to select it to be played.
-    - As a player, I want the game to be scored correctly and a running score to be kept and rendered on screen throughout the game
-        - Hand 1: 1 point per `trick`
-        - Hand 2: 1 point per `heart`
-        - Hand 3: 2 points per `queen`
-        - Hand 4: 8 points for the `king of hearts`
-    - As a player, I want the player with the lowest score to be declared the winner at the end of the game, or a tie to be declared in the event of a tie
+- As a player, I want to be able to play a game consisting of hands 1 - 4 of Plpak (`tricks`, `hearts`, `queens`, `king of hearts`)
+- As a player, I want to a playing area to be displayed in the center of the screen where the cards that are played in each round of play are rendered
+- As a player, I want the first dealer to be selected randomly from the 4 players.
+- As a player, I want each hand of the game to start with each player having 8 randomly dealt cards between 7 - A.  The human players cards are rendered face up at the bottom of the screen and the 3 computer players hands are rendered face down, 1 hand on each of the other 3 sides of the screen.
+- As a player, I want game play to follow the correct sequence for hands 1 - 4:
+    - the first dealer deals 4 hands and then each subsequent player to the left becomes the dealer and deals 4 hands.
+    - Once all 16 hands have been dealt the game ends.
+- As a player, I want each player to play in the correct order for hands 1 - 4:
+    - the player to the left of the dealer starts each hand
+    - after the first round of play in each hand the player who took the previous `trick` leads off the next round of play
+    - Play continues until all cards have been played
+- As a player, I want my 3 computer opponents to use basic logic for their strategy:
+    - When leading off a round of play, the player randomly plays the 1st or 2nd lowest card of the suit of which they have the most cards
+    - When not leading off a round of play:
+        - if the player has cards of the **lead suit**, they play their higest card of that suit that is lower than the cards that have already been played
+        - if the player doesn't have any cards of the **lead suit**:
+            - if they have any A or K they play one randomly, else
+            - if they have a single card 9 or greater of one suit they play it,
+            - else they play their highest card 
+- As a player, I want to know when it is my turn to play, and I want to click one of my cards to select it to be played.
+- As a player, I want the game to be scored correctly and a running score to be kept and rendered on screen throughout the game
+    - Hand 1: 1 point per `trick`
+    - Hand 2: 1 point per `heart`
+    - Hand 3: 2 points per `queen`
+    - Hand 4: 8 points for the `king of hearts`
+- As a player, I want the player with the lowest score to be declared the winner at the end of the game, or a tie to be declared in the event of a tie
+- As a player, I want a button to start a new game
 
 ### Stretch Goals
-    - As a player, I want to play hand 5 of Plpak (`solitaire`) such that the game now consists of each player dealing 5 hads for a total of 20 hands. Hand 5 is dealt and played after hand 4 in each players deal.
-    - As a player, I want the hand to be played such that the players build out each suit in order starting from the jack and builiding upward and downward, ending up as such:
+- As a player, I want to play hand 5 of Plpak (`solitaire`) such that the game now consists of each player dealing 5 hads for a total of 20 hands. Hand 5 is dealt and played after hand 4 in each players deal.
+- As a player, I want the hand to be played such that the players build out each suit in order starting from the jack and builiding upward and downward, ending up as such:
 
 | Spades | Hearts | Clubs | Diamonds |
 |:------:|:------:|:-----:|:--------:|
@@ -117,35 +126,56 @@
 |    7   |    7   |   7   |     7    |
 - This is how the board should look after all cards have been played.
 
-    - As a player, I want each player to play in the correct order for hand 5:
-        - The player with the jack of spades starts
-        - Each player to the left plays 1 card only if they have a jack or a card that allows them to build sequentially on the cards that have already been played.  For example:
+- As a player, I want each player to play in the correct order for hand 5:
+    - The player with the jack of spades starts
+    - Each player to the left plays 1 card only if they have a jack or a card that allows them to build sequentially on the cards that have already been played.  For example:
 
 | Spades | Hearts | Clubs | Diamonds |
 |:------:|:------:|:-----:|:--------:|
-|    -   |    -    |   -   |    -      |
-|    -   |    -    |   -   |     -     |
-|    -   |    -    |   Q   |    -      |
-|    J   |     -   |   J   |     -     |
-|   10   |      -  |    -  |    -      |
-|    9   |     -   |   -   |     -     |
-|    -   |     -   |   -   |     -     |
-|    -   |     -   |   -   |       -   |
+|    -   |    -    |   -   |    -    |
+|    -   |    -    |   -   |    -    |
+|    -   |    -    |   Q   |    -    |
+|    J   |     -   |   J   |    -    |
+|   10   |      -  |    -  |    -    |
+|    9   |     -   |   -   |    -    |
+|    -   |     -   |   -   |    -    |
+|    -   |     -   |   -   |    -    |
 - In this case the next player could play a queen or 8 of spadess, jack of hearts, 10 or king of clubs or jack of diamonds.
-       - Play continues until all cards have been played
-    - As a player, I want the game to be scored correctly including hand 5 and a running score to be kept and rendered throughout the game
-        - Hand 5: -5 points for the player who runs out of cards first
-                  -3 points for the player who runs out of cards second
-                  -1 point for the player who runs out of cards third
+    - Play continues until all cards have been played
+- As a player, I want the game to be scored correctly including hand 5 and a running score to be kept and rendered throughout the game
+    - Hand 5: -5 points for the player who runs out of cards first
+              -3 points for the player who runs out of cards second
+              -1 point for the player who runs out of cards third
 
 ## Wire Frames
+### Game play look for hands 1 to 4
+![image](https://github.com/Matt-Gallery/my-game-plpak/blob/main/static%20assets/Plpak%20Game%20Board.png?raw=true)
 
-![image](home\mrgallery\SEB\seb224\projects\my-game-plpak\static assets\Plpak Game Board.png)
-![image](home\mrgallery\SEB\seb224\projects\my-game-plpak\static assets\Plpak Solitarie Round Game Board.png)
+### Game play look for hand 5
+![image](https://github.com/Matt-Gallery/my-game-plpak/blob/main/static%20assets/Plpak%20Solitarie%20Round%20Game%20Board.png?raw=true)
 
 ## Pseudocode
+```js
+/*-------------------------------- Constants --------------------------------*/
+// all 32 cards
 
+/*---------------------------- Variables (state) ----------------------------*/
+// What cards are remaining in each player's hand
+// What cards are currently in play
+// Each trick and which player took it (or discard after it's been scored?)
+// The current score for each player
+// which player's turn is it?
+// Is it time to deal a new hand?
+// is the game complete?
+// Display result message? - either who won or who tied
 
+/*-------------------------------- Functions --------------------------------*/
+// Handle player clicking deal and starting the game
+// Handle player clicking a card to play
+// Logic to determine what card the 3 computer players play
+// Display messages to prompt player to play their turn and the result message - either who won or who tied
+
+```
 
 ## Timeline
 
