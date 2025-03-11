@@ -4,20 +4,6 @@
   gap: 10px;
 }
 
-.card {
-  width: 80px;
-  height: 120px;
-  border: 2px solid #000;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-self: center;
-  padding: 4px;
-  font-size: 40px;
-  font-weight: bold;
-}
-
 .card span {
   font-size: 32px;
 }
@@ -32,21 +18,28 @@
   color: black;
 }
 
-.hand {
+.hand-2 {
   display: flex;
   justify-content: center;
   transform: rotate(90deg);
-  margin-right: -100px;
-  margin-left: -100px;
+  margin-right: -75px;
+  margin-left: -75px;
+}
+
+.hand-4 {
+  display: flex;
+  justify-content: center;
+  transform: rotate(90deg);
+  margin-right: -75px;
+  margin-left: -75px;
 }
 
 .back {
   width: 80px;
   height: 120px;
-  border: 2px solid #000;
   background-color: white;
   border-radius: 5px;
-  margin-right: -50px;
+  margin-right: -60px;
   background-repeat: repeat;
 }
 
@@ -54,21 +47,49 @@
   margin-right: 0;
 }
 
+body {
+  background-color: rgb(5, 148, 5);
+}
+
 .play {
-  margin-bottom: 40px;
+  margin-bottom: 0px;
   list-style: none;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
-
 }
 
 .board {
-  display: flex;
   width: 450px;
   height: 450px;
   background-color: green;
+  border-radius: 6px;
+  background-image: url("static assets/logo 6.png");
+  background-position: center;
+  display: grid;
+  grid-template-areas:
+    ". c ."
+    "b . d"
+    ". a .";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.player1 {
+  grid-area: a;
+}
+
+.player2 {
+  grid-area: b;
+}
+
+.player3 {
+  grid-area: c;
+}
+
+.player4 {
+  grid-area: d;
 }
 
 .tophand {
@@ -76,8 +97,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
-  margin-bottom: 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .scoreboard {
@@ -91,16 +112,16 @@
 .players {
   display: flex;
   align-items: center;
-  justify-content:center;
-  background-color: white;
+  justify-content: center;
   height: 30px;
 }
 
 .name {
   display: flex;
   padding: 15px;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
+  color: white;
 }
 
 .score {
@@ -109,8 +130,39 @@
   justify-content: flex-end;
   width: 50px;
   height: 50px;
-  margin: 5px  20px;
+  margin: 5px 29px;
   border: 2px solid #000;
+}
+
+.human {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.card {
+  width: 80px;
+  height: 120px;
+  border: 1px solid #000;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: center;
+  padding: 4px;
+  font-size: 40px;
+  font-weight: bold;
+  margin-right: -60px;
+  background-repeat: repeat;
+}
+
+.card:active {
+  background-color: #e4e4e4;
+  transform: translateY(3px);
 }
 
 .deal {
@@ -118,8 +170,14 @@
   height: 50px;
   font-size: 30px;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 2px #747474;
+}
+
+.deal:active {
+  background-color: #e4e4e4;
+  transform: translateY(3px);
 }
