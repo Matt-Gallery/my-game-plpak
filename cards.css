@@ -35,6 +35,9 @@
 .hand {
   display: flex;
   justify-content: center;
+  transform: rotate(90deg);
+  margin-right: -100px;
+  margin-left: -100px;
 }
 
 .back {
@@ -43,8 +46,7 @@
   border: 2px solid #000;
   background-color: white;
   border-radius: 5px;
-  margin-right: -30px;
-  margin-top: 30px;
+  margin-right: -50px;
   background-repeat: repeat;
 }
 
@@ -69,35 +71,13 @@
   background-color: green;
 }
 
-.hand-1 {
-  display: flex;
-  width: 150px;
-  height: 450px;
-  background-color: rgb(182, 181, 181);
-  margin-right: 25px;
-}
-
-.hand-3 {
-  display: flex;
-  width: 150px;
-  height: 450px;
-  background-color: rgb(182, 181, 181);
-  margin-left: 25px; 
-}
-
 .tophand {
   list-style: none;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 15px;
-}
-
-.hand-2 {
-  width: 450px;
-  height: 130px;
-  background-color: rgb(182, 181, 181);
-  margin-bottom: 25px;
+  margin-bottom: 16px;
 }
 
 .scoreboard {
