@@ -61,8 +61,8 @@ body {
 }
 
 .board {
-  width: 450px;
-  height: 450px;
+  width: 350px;
+  height: 350px;
   background-color: green;
   border-radius: 6px;
   background-image: url("static assets/logo 6.png");
@@ -79,18 +79,22 @@ body {
 .player1 {
   grid-area: a;
   justify-self: center;
+  margin-bottom: 10px;
 }
 
 .player2 {
   grid-area: b;
+  margin-left: 10px;
 }
 
 .player3 {
   grid-area: c;
+  margin-top: 10px;
 }
 
 .player4 {
   grid-area: d;
+  margin-right: 10px;
 }
 
 .tophand {
@@ -166,8 +170,14 @@ body {
   transform: translateY(3px);
 }
 
+.buttons {
+  justify-self: center;
+  display: flex;
+  width: 500px;
+  justify-content:space-between;
+}
 .deal {
-  width: 100px;
+  width: 200px;
   height: 50px;
   font-size: 30px;
   border-radius: 10px;
@@ -179,6 +189,23 @@ body {
 }
 
 .deal:active {
+  background-color: #e4e4e4;
+  transform: translateY(3px);
+}
+
+.next {
+  width: 200px;
+  height: 50px;
+  font-size: 30px;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px #747474;
+}
+
+.next:active {
   background-color: #e4e4e4;
   transform: translateY(3px);
 }

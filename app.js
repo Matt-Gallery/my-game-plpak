@@ -59,6 +59,8 @@ let playerHands = {
   player3: [],
   player4: [],
 };
+
+let orderOfPlay = [];
 // What cards are currently in play
 let inPlay = [];
 // //Each trick and which player took it (or discard after it's been scored?)
@@ -392,7 +394,10 @@ function displayCardsOnTable() {
         : highest;
     });
   }
+console.log(findHighestInSuit);
+  function nextOrderOfPlay () {
 
+  }
   // TODO: move this into its own function
   Array.from(cardEls).forEach((card) => {
     console.log(card);
