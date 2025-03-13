@@ -88,9 +88,9 @@ const player1El = document.querySelector(".player1");
 //   dealCards();
 //   newHand = false;
 //   gameEnd = false;
+//   orderOfPlay = ['1', '2', '3', '0'];
 // }
 
-//Perplexity AI
 function dealCards() {
   if (playerHands.player1.length !== 0) {
     return;
@@ -107,48 +107,12 @@ function dealCards() {
   while (cardIndex < deck.length) {
     for (let player of players) {
       if (cardIndex < deck.length && playerHands[player].length < 8) {
-        playerHands[player].push(deck[cardIndex]);
+        const card = {...deck[cardIndex], player: player};  // Add 'player' key
+        playerHands[player].push(card);
         cardIndex++;
       }
     }
   }
-  /*------ Sort Player Hands by most cards in suit then low to high -----------*/
-  function sortPlayerHands(playerHands) {
-    // Define a helper function to get the rank of a card value
-    const cardRank = (value) => {
-      return cardRanks[value];
-    };
-
-    // Iterate over each player's hand
-    for (let player in playerHands) {
-      const hand = playerHands[player];
-
-      // Group cards by suit and count occurrences
-      const suitGroups = hand.reduce((acc, card) => {
-        if (!acc[card.suit]) acc[card.suit] = [];
-        acc[card.suit].push(card);
-        return acc;
-      }, {});
-
-      // Convert suit groups to an array of [suit, cards] pairs
-      const sortedSuits = Object.entries(suitGroups).sort(
-        (a, b) => b[1].length - a[1].length
-      );
-
-      // Sort cards within each suit by value
-      const sortedHand = [];
-      for (let [suit, cards] of sortedSuits) {
-        cards.sort((a, b) => cardRank(a.value) - cardRank(b.value));
-        sortedHand.push(...cards);
-      }
-
-      // Update the player's hand with the sorted hand
-      playerHands[player] = sortedHand;
-    }
-  }
-  // Call the function to sort player hands
-  sortPlayerHands(playerHands);
-  console.log(playerHands);
 
   displayCardsOnTable();
 }
@@ -378,13 +342,13 @@ function displayCardsOnTable() {
     inPlay.push(playedCard);
 
     // Usage example:
-    const highestInSuit = findHighestInSuit(inPlay, firstPlay);
+    const highestInSuit = findHandLoser(inPlay, firstPlay);
     console.log("Highest card in suit:", highestInSuit);
 
   }
 
   /*---- Determine which Player lost the hand (who takes the trick) -----*/
-  function findHighestInSuit(inPlay, firstPlay) {
+  function findHandLoser(inPlay, firstPlay) {
     const targetSuit = firstPlay.lowestCard.suit;
     const sameSuitCards = inPlay.filter((card) => card.suit === targetSuit);
 
@@ -394,92 +358,13 @@ function displayCardsOnTable() {
         : highest;
     });
   }
-console.log(findHighestInSuit);
-  function nextOrderOfPlay () {
 
-  }
   // TODO: move this into its own function
   Array.from(cardEls).forEach((card) => {
     console.log(card);
     card.addEventListener("click", handleClick);
   });
 }
-//Perplexity AI
-
-/*------ Count the numnber of cards of each suit in each players hand -------*/
-// function countPlayerSuits(playerHands) {
-//   const result = {};
-//   for (const [player, cards] of Object.entries(playerHands)) {
-//     const suitCount = { "♣": 0, "♠": 0, "♥": 0, "♦": 0 };
-//     for (const card of cards) {
-//       suitCount[card.suit]++;
-//     }
-//     result[player] = suitCount;
-//   }
-//   return result;
-// }
-
-// const suitCounts = countPlayerSuits(playerHands);
-// console.log(suitCounts);
-
-// function findSuitsWithMostElements(playerHands) {
-//   const player2Cards = playerHands.player2;
-
-//   // Create a suit counter object
-//   const suitCount = {
-//     "♣": 0,
-//     "♠": 0,
-//     "♥": 0,
-//     "♦": 0,
-//   };
-
-//   // Count occurrences of each suit
-//   for (const card of player2Cards) {
-//     suitCount[card.suit]++;
-//   }
-
-//   // Find the maximum count
-//   const maxCount = Math.max(...Object.values(suitCount));
-
-//   // Find all suits with the maximum count
-//   const suitsWithMostElements = Object.entries(suitCount)
-//     .filter(([suit, count]) => count === maxCount)
-//     .map(([suit]) => suit);
-
-//   return {
-//     suits: suitsWithMostElements,
-//     count: maxCount,
-//   };
-// }
-// // Example usage:
-// const result = findSuitsWithMostElements(playerHands);
-// console.log("Suits with most elements:", result);
-
-
-// function render() {
-//   updateBoard();
-//   updateMessage();
-// }
-
-// function updateBoard() {
-//   board.forEach((cell, idx) => {
-//     squareEls[idx].textContent = cell;
-//   });
-// }
-
-// function updateMessage() {
-//   if (winner) {
-//     messageEl.textContent = `${winner} wins!`;
-//   } else if (tie) {
-//     messageEl.textContent = "It's a tie!";
-//   } else {
-//     messageEl.textContent = `${turn}'s turn`;
-//   }
-// }
-
-// Handle player clicking a card to play
-// Logic to determine what card the 3 computer players play
-// Display messages to prompt player to play their turn and the result message - either who won or who tied
 
 /*----------------------------- Event Listeners -----------------------------*/
 // Player clicks the start/restart button
