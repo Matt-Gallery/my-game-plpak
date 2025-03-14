@@ -51,6 +51,7 @@ let score = [0, 0, 0, 0];
 let currentStarter = "player2"; // Player 2 starts first round
 let roundComplete = false;
 
+
 /*------------------------ Cached Element References ------------------------*/
 const dealButtonEl = document.querySelector(".deal");
 const nextRoundButtonEl = document.querySelector(".next");
@@ -188,12 +189,55 @@ function playCardToBoard(card, player) {
   ].innerHTML = `<div class="card ${cardStyle[card.suit]}">${card.value} ${card.suit}</div>`;
 }
 
-// Select a card for computer players
+// Updated selectCard function with requested logic
 function selectCard(player, leadSuit) {
   const playerCards = playerHands[player];
+
+  // Check if the computer is the first player in the round (no leadSuit)
+  if (!leadSuit) {
+    // Count occurrences of card values
+    const valueCounts = playerCards.reduce((acc, card) => {
+      acc[card.value] = (acc[card.value] || 0) + 1;
+      return acc;
+    }, {});
+
+    // Find single card occurrences with rank < 11 (J or lower)
+    const singleLowCards = playerCards.filter(
+      (card) => valueCounts[card.value] === 1 && cardRanks[card.value] < 5 // ranks 7-10 (1-4)
+    );
+
+    if (singleLowCards.length === 1) {
+      // Randomly decide between playing the single card or existing logic
+      const randomChoice = Math.random() < 0.5;
+      if (randomChoice) {
+        return singleLowCards[0];
+      } else {
+        // Existing logic: Play lowest card of the suit they have most of
+        const suitCounts = playerCards.reduce((acc, card) => {
+          acc[card.suit] = (acc[card.suit] || 0) + 1;
+          return acc;
+        }, {});
+
+        const mostCommonSuit = Object.keys(suitCounts).reduce((a, b) =>
+          suitCounts[a] > suitCounts[b] ? a : b
+        );
+
+        const cardsOfMostCommonSuit = playerCards.filter(
+          (card) => card.suit === mostCommonSuit
+        );
+
+        return cardsOfMostCommonSuit.reduce((lowest, card) =>
+          cardRanks[card.value] < cardRanks[lowest.value] ? card : lowest
+        );
+      }
+    }
+  }
+
+  // Existing logic for cases not meeting the special condition
   let validCards = leadSuit
     ? playerCards.filter((card) => card.suit === leadSuit)
     : playerCards;
+
   return validCards.length > 0
     ? validCards.reduce((lowest, card) =>
         cardRanks[card.value] < cardRanks[lowest.value] ? card : lowest
@@ -202,6 +246,7 @@ function selectCard(player, leadSuit) {
         cardRanks[card.value] > cardRanks[highest.value] ? card : highest
       );
 }
+
 
 // Wait for Player 1 to pick a card
 function waitForPlayer1() {
