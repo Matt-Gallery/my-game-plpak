@@ -294,6 +294,29 @@ function handleClick(event) {
 
   // Re-render the hand to reflect the removal
   renderHands();
+
+  // Disable further clicks until next round
+  hands.player1.querySelectorAll(".card").forEach((card) => {
+    card.removeEventListener("click", handleClick);
+  });
+}
+
+// Ensure clicks are enabled again when it's Player 1's turn
+function waitForPlayer1() {
+  return new Promise((resolve) => {
+    function playerMoveHandler(event) {
+      handleClick(event);
+      hands.player1.removeEventListener("click", playerMoveHandler);
+      resolve();
+    }
+
+    // Re-enable clicks only at the start of Player 1's turn
+    hands.player1.querySelectorAll(".card").forEach((card) => {
+      card.addEventListener("click", handleClick);
+    });
+
+    hands.player1.addEventListener("click", playerMoveHandler);
+  });
 }
 
 // Determine the trick winner
