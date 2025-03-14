@@ -141,6 +141,12 @@ function getNextPlayers(startingPlayer) {
 }
 
 // Start the round
+// Utility delay function
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Updated startRound function to include delay for computer players
 async function startRound(startingPlayer) {
   if (roundComplete) return;
   inPlay = [];
@@ -154,6 +160,7 @@ async function startRound(startingPlayer) {
     if (player === "player1") {
       await waitForPlayer1();
     } else {
+      await delay(400); // Await a 400ms delay before computer plays
       let playedCard = selectCard(player, inPlay[0]?.suit || null);
       playCardToBoard(playedCard, player);
     }
