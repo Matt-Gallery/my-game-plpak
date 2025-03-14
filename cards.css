@@ -22,16 +22,16 @@
   display: flex;
   justify-content: center;
   transform: rotate(90deg);
-  margin-right: -75px;
-  margin-left: -75px;
+  margin-right: 0;
+  width: 170px;
 }
 
 .hand-4 {
   display: flex;
   justify-content: center;
   transform: rotate(90deg);
-  margin-right: -75px;
-  margin-left: -75px;
+  margin-left: 0;
+  width: 170px;
 }
 
 .back {
@@ -61,8 +61,8 @@ body {
 }
 
 .board {
-  width: 350px;
-  height: 350px;
+  width: 430px;
+  height: 430px;
   background-color: green;
   border-radius: 6px;
   background-image: url("static assets/logo 6.png");
@@ -106,14 +106,6 @@ body {
   margin-bottom: 12px;
 }
 
-.scoreboard {
-  display: flex;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .players {
   display: flex;
   align-items: center;
@@ -129,14 +121,25 @@ body {
   color: white;
 }
 
+.scoreboard {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+}
+
 .score {
   display: flex;
   background-color: rgb(234, 255, 196);
-  justify-content: flex-end;
+  justify-content: center;  /* Center horizontally */
+  align-items: center;      /* Center vertically */
   width: 50px;
   height: 50px;
   margin: 5px 29px;
   border: 2px solid #000;
+  font-size: 20px;         /* Ensure text is clearly visible */
+  font-weight: bold;       /* Make the score stand out */
+  text-align: center;      /* Extra centering safeguard */
 }
 
 .human {
