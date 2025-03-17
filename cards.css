@@ -61,8 +61,8 @@ body {
 }
 
 .board {
-  width: 430px;
-  height: 430px;
+  width: 410px;
+  height: 410px;
   background-color: green;
   border-radius: 6px;
   background-image: url("static assets/logo 6.png");
@@ -79,8 +79,7 @@ body {
 .player1 {
   grid-area: a;
   justify-self: center;
-  margin-bottom: 10px;
-  margin-top: 8px;
+  margin-top: -10px;
 }
 
 .player2 {
@@ -110,7 +109,9 @@ body {
   justify-content: center;
   margin-top: 12px;
   margin-bottom: 12px;
-
+  font-size: 30px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
 }
 
 .players {

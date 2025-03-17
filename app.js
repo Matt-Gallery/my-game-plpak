@@ -41,6 +41,13 @@ const cardStyle = {
   "♠": "spades"
 }
 
+const winnerStyle = {
+  "player1": "Player 1",
+  "player2": "Player 2",
+  "player3": "Player 3",
+  "player4": "Player 4"
+}
+
 const cardRanks = { 7: 1, 8: 2, 9: 3, 10: 4, J: 5, Q: 6, K: 7, A: 8 };
 const players = ["player1", "player2", "player3", "player4"];
 
@@ -351,9 +358,11 @@ nextRoundButtonEl.addEventListener("click", () => {
       let minScore = Math.min(...score);
       let winners = players.filter((_, index) => score[index] === minScore);
   
-      let message = winners.length > 1
-        ? `It's a tie between ${winners.join(" and ")} with ${minScore} points!`
-        : `${winners[0]} wins with ${minScore} points!`;
+      let translatedWinners = winners.map(winner => winnerStyle[winner]);
+  
+      let message = translatedWinners.length > 1
+        ? `It's a tie between ${translatedWinners.join(" and ")} with ${minScore} points!`
+        : `${translatedWinners[0]} wins with ${minScore} points!`;
   
       document.querySelector(".tophand").innerHTML = `<div class="winner-message">${message}</div>`;
     }

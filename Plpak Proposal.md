@@ -125,10 +125,49 @@
 - As a player, I want the game to be scored correctly and a running score to be kept and rendered on screen throughout the game:
     - 1 point per `trick` is aggregated to the player who takes it
     - 1 point per `heart` is aggregated to the player who takes it
+    - As a player, I want to play hand 5 of Plpak (`solitaire`) such that the game now consists of each player dealing 5 hads for a total of 20 hands. Hand 5 is dealt and played after hand 4 in each players deal.
+- As a player, I want the hand to be played such that the players build out each suit in order starting from the jack and builiding upward and downward, ending up as such:
+
+| Spades | Hearts | Clubs | Diamonds |
+|:------:|:------:|:-----:|:--------:|
+|    A   |    A   |   A   |     A    |
+|    K   |    K   |   K   |     K    |
+|    Q   |    Q   |   Q   |     Q    |
+|    J   |    J   |   J   |     J    |
+|   10   |   10   |   10  |    10    |
+|    9   |    9   |   9   |     9    |
+|    8   |    8   |   8   |     8    |
+|    7   |    7   |   7   |     7    |
+- This is how the board should look after all cards have been played.
+
+- As a player, I want each player to play in the correct order for hand 5:
+    - The player with the jack of spades starts
+    - Each player to the left plays 1 card only if they have a jack or a card that allows them to build sequentially on the cards that have already been played.  For example:
+
+| Spades | Hearts | Clubs | Diamonds |
+|:------:|:------:|:-----:|:--------:|
+|    -   |    -    |   -   |    -    |
+|    -   |    -    |   -   |    -    |
+|    -   |    -    |   Q   |    -    |
+|    J   |     -   |   J   |    -    |
+|   10   |      -  |    -  |    -    |
+|    9   |     -   |   -   |    -    |
+|    -   |     -   |   -   |    -    |
+|    -   |     -   |   -   |    -    |
+- In this case the next player could play a queen or 8 of spadess, jack of hearts, 10 or king of clubs or jack of diamonds.
+    - Play continues until all cards have been played
+- As a player, I want the game to be scored correctly including hand 5 and a running score to be kept and rendered throughout the game
+    - Hand 5: -5 points for the player who runs out of cards first
+              -3 points for the player who runs out of cards second
+              -1 point for the player who runs out of cards third
 
 ## Wire Frames
 ### Game play look
 ![image](https://github.com/Matt-Gallery/my-game-plpak/blob/main/static%20assets/Plpak%20Game%20Board.png?raw=true)
+
+### Game play look for hand 5
+![image](https://github.com/Matt-Gallery/my-game-plpak/blob/main/static%20assets/Plpak%20Solitarie%20Round%20Game%20Board.png?raw=true)
+
 
 ## Pseudocode
 ```js
