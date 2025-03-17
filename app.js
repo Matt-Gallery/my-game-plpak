@@ -161,7 +161,7 @@ async function startRound(startingPlayer) {
     if (player === "player1") {
       await waitForPlayer1();
     } else {
-      await delay(400); // Await a 400ms delay before computer plays
+      await delay(600); // Await a 400ms delay before computer plays
       let playedCard = selectCard(player, inPlay[0]?.suit || null);
       playCardToBoard(playedCard, player);
     }

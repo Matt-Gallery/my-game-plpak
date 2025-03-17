@@ -137,28 +137,16 @@ body {
 .score {
   display: flex;
   background-color: rgb(234, 255, 196);
-  justify-content: center;  /* Center horizontally */
-  align-items: center;      /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
   width: 50px;
   height: 50px;
   margin: 5px 29px;
   border: 2px solid #000;
-  font-size: 20px;         /* Ensure text is clearly visible */
-  font-weight: bold;       /* Make the score stand out */
-  text-align: center;      /* Extra centering safeguard */
+  font-size: 20px; /* Ensure text is clearly visible */
+  font-weight: bold; /* Make the score stand out */
+  text-align: center; /* Extra centering safeguard */
 }
-
-/* i {
- font-size: 40px;
- float: right;
- width: 60px;
- text-align: right;
- background-color: rgb(133, 130, 130);
- color: #fff;
- text-align: center;
- border-radius: 60px;
- padding: 5px 0;
-} */
 
 .human {
   cursor: default;
@@ -195,9 +183,11 @@ body {
 .buttons {
   justify-self: center;
   display: flex;
-  width: 500px;
-  justify-content:space-between;
+  width: 650px;
+  justify-content: space-between;
+  margin-left: 85px;
 }
+
 .deal {
   width: 200px;
   height: 50px;
@@ -205,8 +195,7 @@ body {
   border-radius: 10px;
   margin-top: 10px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-right: 30px;
   box-shadow: 0 2px #747474;
 }
 
@@ -223,11 +212,52 @@ body {
   margin-top: 10px;
   display: block;
   margin-left: auto;
-  margin-right: auto;
   box-shadow: 0 2px #747474;
 }
 
 .next:active {
   background-color: #e4e4e4;
   transform: translateY(3px);
+}
+
+i {
+  font-size: 40px;
+  float: right;
+  width: 60px;
+  text-align: right;
+  background-color: rgb(158, 154, 154);
+  color: #fff;
+  text-align: center;
+  border-radius: 50px;
+  padding: 5px 0;
+  margin-left: 30px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 180px;
+  background-color: rgb(148, 144, 144);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  text-align: left;
+  list-style-position: inside;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
