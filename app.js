@@ -346,6 +346,21 @@ nextRoundButtonEl.addEventListener("click", () => {
     return;
   }
 
+  function checkGameOver() {
+    if (players.every(player => playerHands[player].length === 0)) {
+      let minScore = Math.min(...score);
+      let winners = players.filter((_, index) => score[index] === minScore);
+  
+      let message = winners.length > 1
+        ? `It's a tie between ${winners.join(" and ")} with ${minScore} points!`
+        : `${winners[0]} wins with ${minScore} points!`;
+  
+      document.querySelector(".tophand").innerHTML = `<div class="winner-message">${message}</div>`;
+    }
+  }
+
+  checkGameOver();
+  
   roundComplete = false;
   startRound(currentStarter);
 });
