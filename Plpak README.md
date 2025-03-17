@@ -1,5 +1,5 @@
 # Plpak
-![playing cards](https://images.unsplash.com/photo-1541278107931-e006523892df?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGxheWluZyUyMGNhcmRzfGVufDB8fDB8fHww)
+![playing cards](https://github.com/Matt-Gallery/my-game-plpak/blob/main/static%20assets/logo%206.png?raw=true)
 
 ## Project Description
 
