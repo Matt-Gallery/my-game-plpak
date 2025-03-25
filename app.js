@@ -1,7 +1,3 @@
-// Emre's project presentation notes
-// - Do not use alerts()! 
-// - Is there a win/lose state? 
-// - Leave comments in your code! 
 /*-------------------------------- Constants --------------------------------*/
 const deck = [
   { value: "7", suit: "♥" },
@@ -42,32 +38,26 @@ const cardStyle = {
   "♥": "hearts",
   "♦": "diamonds",
   "♣": "clubs",
-  "♠": "spades",
-};
+  "♠": "spades"
+}
 
 const winnerStyle = {
-  player1: "Player 1",
-  player2: "Player 2",
-  player3: "Player 3",
-  player4: "Player 4",
-};
+  "player1": "Player 1",
+  "player2": "Player 2",
+  "player3": "Player 3",
+  "player4": "Player 4"
+}
 
 const cardRanks = { 7: 1, 8: 2, 9: 3, 10: 4, J: 5, Q: 6, K: 7, A: 8 };
 const players = ["player1", "player2", "player3", "player4"];
 
 /*---------------------------- Variables (state) ----------------------------*/
-// Could this be an object? :D 
-// const gameState = {
-//   playerHands: {},
-//   inPlay: [],
-//   score: [],
-//   ...etc
-// }
 let playerHands = { player1: [], player2: [], player3: [], player4: [] };
 let inPlay = [];
 let score = [0, 0, 0, 0];
 let currentStarter = "player2"; // Player 2 starts first round
 let roundComplete = false;
+
 
 /*------------------------ Cached Element References ------------------------*/
 const dealButtonEl = document.querySelector(".deal");
@@ -140,11 +130,7 @@ function renderHands() {
     playerHands[player].forEach((card) => {
       let cardHTML =
         player === "player1"
-          ? `<div class="card ${cardStyle[card.suit]}" data-value="${
-              card.value
-            }" data-suit="${card.suit}"><span>${card.value}</span>${
-              card.suit
-            }</div>`
+          ? `<div class="card ${cardStyle[card.suit]}" data-value="${card.value}" data-suit="${card.suit}"><span>${card.value}</span>${card.suit}</div>`
           : `<img class="card back" src="static assets/playing card back.png" alt="Face Down Card" />`;
       hands[player].insertAdjacentHTML("beforeend", cardHTML);
     });
@@ -165,7 +151,7 @@ function getNextPlayers(startingPlayer) {
 // Start the round
 // Utility delay function
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // Updated startRound function to include delay for computer players
@@ -205,9 +191,9 @@ function playCardToBoard(card, player) {
     hands[player].removeChild(hands[player].firstChild);
   }
 
-  playAreas[player].innerHTML = `<div class="card ${cardStyle[card.suit]}">${
-    card.value
-  } ${card.suit}</div>`;
+  playAreas[
+    player
+  ].innerHTML = `<div class="card ${cardStyle[card.suit]}">${card.value} ${card.suit}</div>`;
 }
 
 // Updated selectCard function with requested logic
@@ -268,6 +254,7 @@ function selectCard(player, leadSuit) {
       );
 }
 
+
 // Wait for Player 1 to pick a card
 function waitForPlayer1() {
   return new Promise((resolve) => {
@@ -299,7 +286,7 @@ function handleClick(event) {
   let playedCard = playerHands.player1[playedCardIndex];
 
   // Check if Player 1 has a valid card of the leading suit
-  let validCards = playerHands.player1.filter((card) => card.suit === leadSuit);
+  let validCards = playerHands.player1.filter(card => card.suit === leadSuit);
 
   if (leadSuit && validCards.length > 0 && playedCard.suit !== leadSuit) {
     alert(`You must play a ${leadSuit} card!`);
@@ -367,27 +354,22 @@ nextRoundButtonEl.addEventListener("click", () => {
   }
 
   function checkGameOver() {
-    if (players.every((player) => playerHands[player].length === 0)) {
+    if (players.every(player => playerHands[player].length === 0)) {
       let minScore = Math.min(...score);
       let winners = players.filter((_, index) => score[index] === minScore);
-
-      let translatedWinners = winners.map((winner) => winnerStyle[winner]);
-
-      let message =
-        translatedWinners.length > 1
-          ? `It's a tie between ${translatedWinners.join(
-              " and "
-            )} with ${minScore} points!`
-          : `${translatedWinners[0]} wins with ${minScore} points!`;
-
-      document.querySelector(
-        ".tophand"
-      ).innerHTML = `<div class="winner-message">${message}</div>`;
+  
+      let translatedWinners = winners.map(winner => winnerStyle[winner]);
+  
+      let message = translatedWinners.length > 1
+        ? `It's a tie between ${translatedWinners.join(" and ")} with ${minScore} points!`
+        : `${translatedWinners[0]} wins with ${minScore} points!`;
+  
+      document.querySelector(".tophand").innerHTML = `<div class="winner-message">${message}</div>`;
     }
   }
 
   checkGameOver();
-
+  
   roundComplete = false;
   startRound(currentStarter);
 });
